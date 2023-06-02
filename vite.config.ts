@@ -11,7 +11,7 @@ import { OUTPUT_DIR } from './build/constant';
 const { dependencies, devDependencies, name, version } = pkg;
 const __APP_INFO__ = {
     pkg: { dependencies, devDependencies, name, version },
-    lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss')
+    lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
 };
 
 // https://vitejs.dev/config/
@@ -59,18 +59,18 @@ export default ({ command, mode, ssrBuild }: ConfigEnv): UserConfig => {
                 // /@/xxxx => src/xxxx
                 {
                     find: /\/@\//,
-                    replacement: pathResolve('src') + '/'
+                    replacement: pathResolve('src') + '/',
                 },
                 // /#/xxxx => types/xxxx
                 {
                     find: /\/#\//,
-                    replacement: pathResolve('types') + '/'
+                    replacement: pathResolve('types') + '/',
                 },
                 {
                     find: 'devextreme/ui',
-                    replacement: 'devextreme/esm/ui'
-                }
-            ]
+                    replacement: 'devextreme/esm/ui',
+                },
+            ],
         },
         server: {
             https: true,
@@ -78,14 +78,14 @@ export default ({ command, mode, ssrBuild }: ConfigEnv): UserConfig => {
             host: true,
             port: VITE_PORT,
             // Load proxy configuration from .env
-            proxy: createProxy(VITE_PROXY)
+            proxy: createProxy(VITE_PROXY),
         },
         /**
          * 转换选项传递给esbuild。
          * 或设置为' false '禁用esbuild。
          */
         esbuild: {
-            drop: VITE_DROP_CONSOLE ? ['console', 'debugger'] : []
+            drop: VITE_DROP_CONSOLE ? ['console', 'debugger'] : [],
         },
         build: {
             target: 'es2015',
@@ -104,10 +104,10 @@ export default ({ command, mode, ssrBuild }: ConfigEnv): UserConfig => {
             // },
             // Turning off brotliSize display can slightly reduce packaging time
             reportCompressedSize: false,
-            chunkSizeWarningLimit: 2000
+            chunkSizeWarningLimit: 2000,
         },
         define: {
-            __APP_INFO__: JSON.stringify(__APP_INFO__)
-        }
+            __APP_INFO__: JSON.stringify(__APP_INFO__),
+        },
     };
 };
